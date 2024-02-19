@@ -1,5 +1,6 @@
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use serde::{Deserialize, Serialize};
+use serde_json;
 
 pub async fn process_data(Json(request): Json<DataRequest>) -> impl IntoResponse {
     // Calculate sums and return response
@@ -9,12 +10,17 @@ pub async fn process_data(Json(request): Json<DataRequest>) -> impl IntoResponse
     // - We're given a struct type 'DataRequest' that is able to be deserialized -> we need to deserialize it,
     // calcualte the adequate sums and then send it back
 
-    let string_len = 0;
-    let int_sum = 0;
 
-    for item in request {
-        match {
 
+    let mut string_len: i32 = 0;
+    let mut int_sum: i32 = 0;
+
+    println!("dolasihdsoak");
+    
+    for item in request.data {
+        match item {
+            Data::String(x) => string_len += x.chars().count() as i32,
+            Data::Number(x) => int_sum += x,
         };
     };
 
@@ -28,14 +34,20 @@ pub async fn process_data(Json(request): Json<DataRequest>) -> impl IntoResponse
 }
 
 #[derive(Deserialize)]
-pub struct DataRequest<T> {
+pub struct DataRequest {
     // Add any fields here
-    data: Vec<T>
+    pub data: Vec<Data>
 }
 
 #[derive(Serialize)]
 pub struct DataResponse {
     // Add any fields here
-    string_len: i32,
-    int_sum: i32,
+    pub string_len: i32,
+    pub int_sum: i32,
+}
+
+#[derive(Deserialize)]
+pub enum Data {
+    String(String),
+    Number(i32),
 }
