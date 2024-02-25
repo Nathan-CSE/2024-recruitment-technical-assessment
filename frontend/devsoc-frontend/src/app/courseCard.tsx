@@ -28,18 +28,27 @@ function CourseCard({ course_prefix, course_code, course_title, average_stars, t
         <span className="flex items-start justify-between mb-4">
           <span className="flex flex-wrap items-end">
             <h3 className="text-2xl font-extrabold text-black pr-35">{course_prefix}{course_code}</h3>
-            <p className="text-gray-500 text-4xl ml-5">★★★★★</p>
+            {/* <p className="text-gray-500 text-3xl ml-5">★★★★★</p>
             <br />
-            <p className="text-gray-500 text-sm text-end">{total_reviews} reviews</p>
+            <p className="text-gray-500 text-sm text-end">{total_reviews} reviews</p> */}
           </span>
+
+
+          
+          <div className="flex flex-wrap items-end">
+            <p className="text-gray-500 text-3xl ml-5">★★★★★</p>
+            {/* <br></br> */}
+            <p className="text-gray-500 text-sm text-end">{total_reviews} reviews</p>
+          </div>
 
           {/* <p className="text-gray-500 text-center">{average_stars.toFixed(1)} stars</p> */}
         </span>
 
+          
 
         <h2 className="text-sm text-black mb-10">{course_title}</h2>
 
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap gap-2">
           {offered_terms.map((term) => (
             <span
               className={`px-2 py-1 rounded-xl text-xs text-black font-medium`}
