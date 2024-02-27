@@ -1,2 +1,6 @@
 Please detail the instructions to view your solution here:
 
+* Navigate into the devsoc-frontend folder 
+* Use `npm install` to install dependencies
+* `npm run build`
+* `npm run start`
